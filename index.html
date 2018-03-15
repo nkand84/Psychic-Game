@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Pyschic Game</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <!-- <link rel="stylesheet" type="text/css" href="css/style.css"> -->
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Guess What letter I'm thinking of</h1>
+        <br>
+        <div class="row">
+            <div class="game-rules col-md-5 col-sm-5">
+                <ul>
+                    <li> if user guess is not correct by end of 9 guesses then user looses game</li>
+                    <li>keep track of wins and looses</li>
+                    <li>display user letter and computer letter after each click </li>
+                    <li>letters need to be displayed near guesses left so far</li>
+                    <li>display user letter and computer letter after each click </li>
+                    <li>letters need to be displayed near guesses left so far</li>
+                    <li>display user letter and computer letter after each click </li>
+                    <li>letters need to be displayed near guesses left so far</li>
+                </ul>
+            </div>
+            <div class="game-content col-md-7 col-sm-7">
+                <div id="game">
+                    <p>Enter your letters from a-z to start playing!</p>
+                </div>
+                <script type="text/javascript">
+                    var wins, losses, guesses;
+                    init();
+
+                    // Creating variables to hold the number of wins, and losses. They start at 0.
+                    // function init to initialize the variables 
+                    function init() {
+                        wins = 0;
+                        losses = 0;
+                        //guesses 9
+                        guesses = 9;
+                         // empty array
+                        userInputArray = [];
+                    };
+                    function reset() {
+                        guesses = 9;
+                        // empty array
+                        userInputArray = [];
+                    };
+                   // This function is run whenever the user presses a key.
+                       document.onkeyup = function (event) {
+
+                        // Determines which key was pressed.
+                        var userGuess = event.key;
+
+                        userInputArray.push(userGuess);
+                        //can i use user variables in an array and push each value and display
+                        userGuess = userGuess.toLowerCase();
+                        // Randomly generates ascii values for a-z i.e. from 97 to 122 
+                        
+                        var computerGuess = String.fromCharCode(Math.floor(Math.random() * (122-97))+97);
+
+                        // var totalUserGuesses = document
+
+                        // If we choose the same thing as the computer, increment our ties variable.
+                        if (userGuess === computerGuess) {
+                            wins++;
+                            alert("Wow, You are a Psychic!!");
+                            reset();
+                        }
+
+                        //if user chose something different
+                        else if (userGuess != computerGuess) {
+                            //decrement guesses
+                            guesses--;
+                            
+                            // if guesses = 0 game over
+                            if (guesses === 0) {
+                                alert("Sorry, you are not a psychic!");
+                                losses++;
+                                // alert("Game Over");
+                                reset();
+                            }
+                        }
+
+                        // Creating a variable to hold our new HTML. Our HTML now keeps track of the user and computer guesses, and wins/losses.
+                        var html =
+                            "<p>You chose: " + userGuess + "</p>" +
+                            "<p>The computer chose: " + computerGuess + "</p>" +
+                            "<p>wins: " + wins + "</p>" +
+                            "<p>losses: " + losses + "</p>" +
+                            "<p>Guesses: " + guesses + "</p>" +
+                            "<p>Guessesleft: " + userInputArray + "</p>";
+                        // Set the inner HTML contents of the #game div to our html string
+                        document.getElementById("game").innerHTML = html;
+
+                    };
+                </script>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    </div>
+</body>
+
+</html>
+<!-- 
+//    <input type="text" size="40" onkeydown="myFunction(event)">
+
+//     <p><strong>Note:</strong> The key property is not supported in Safari or IE 8 and earler versions.</p>
+
+//     <p id="demo"></p>
+
+
+//     function myFunction(event) {
+//         var x = event.key;
+//         document.getElementById("demo").innerHTML = "The pressed key was: " + x;
+//     } -->
+
+
+<!-- <h3>A demonstration of how to access a Text Field</h3>
+
+<input type="text" id="myText" placeholder="enter a letter">
+
+<p>Click the "Try it" button to get the text in the text field.</p>
+
+<button onclick="myFunction()">Try it</button>
+
+<p id="demo"></p>
+
+<script>
+function myFunction() {
+
+    var x = document.getElementById("myText").value;
+    var y = String.fromCharCode(Math.floor((Math.random() * (122-65)) + 65));
+    // var y = String.fromCharCode(Math.floor(((Math.random() * (69-65)) + 65)));
+    //y = "A"
+    //document.getElementById("demo").innerHTML = x;
+
+    if (x === y) {
+    	document.getElementById("demo").innerHTML = "Input matches with Guess Value";
+    	document.getElementById('demo').style.background = 'yellow';
+    }
+    else{
+    	document.getElementById("demo").innerHTML = "Input " + x + " doesnt match with Guess value " + y
+    	document.getElementById('demo').style.background = 'transparent';
+    }
+}
+
+-->
+
+<!-- <div class="form-group">
+        <label for="inputWins" class="col-sm-3 control-label">Wins</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="inputWins" placeholder="Wins"><br>
+        </div> 
+       
+        <label for="inputLooses" class="col-sm-3 control-label">Looses</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="inputLooses" placeholder="Looses"><br>
+        </div>
+      
+        <label for="inputGuesses" class="col-sm-3 control-label">Guesses</label>
+        <div class="col-sm-10">
+           <input type="text" class="form-control" id="inputGuesses" placeholder="9"><br>
+        </div>
+        <label for="inputGuessesSoFar" class="col-sm-3 control-label">Guesses Left So Far</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="inputGuessesSoFar" placeholder="Guesses Left">
+        </div> -->
