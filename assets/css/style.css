@@ -17,19 +17,21 @@ h1{
     background: -webkit-linear-gradient(rgb(111, 49, 192), rgb(115, 159, 177));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    margin-bottom: 50px;
     }
-.row{
-    margin:0px auto;
+.container{
+    
     background-image: url("../images/crystalball.jpg");
     background-size: cover;
     background-repeat: no-repeat;
+    width: 500px;
     height:400px;
-    opacity: 0.5;
+    opacity: 0.65;
     
 }
 p{
     text-align: center;
-    font-size: 28px;
+    font-size: 25px;
     font-weight:600;
     line-height: 150%;
     background: -webkit-linear-gradient(rgb(224, 219, 235), rgb(228, 219, 221));
